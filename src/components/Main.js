@@ -1,23 +1,35 @@
-// import Con from 'expo-status-bar';
-import Constants from 'expo-constants';
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Dimensions, StyleSheet, View } from 'react-native';
+import AppBar from './AppBar';
 import RepositoryList from './RepositoryList ';
+import theme from '../themes/theme';
+import { Redirect, Route, Switch } from 'react-router-native';
+import LoginPage from './login/LoginPage';
 
 const Main = () => {
+	console.log(Dimensions.get('window').width, 'ini width');
 	return (
 		<View style={styles.container}>
-			<RepositoryList />
+			<AppBar />
+			<Switch>
+				<Route path='/' exact>
+					<RepositoryList />
+				</Route>
+				<Route path='/signin'>
+					<LoginPage />
+				</Route>
+				<Redirect to='/' />
+			</Switch>
 		</View>
 	);
 };
 
-export default Main;
-
 const styles = StyleSheet.create({
 	container: {
-		marginTop: Constants.statusBarHeight,
-		flexGrow: 1,
-		flexShrink: 1,
+		maxWidth: Dimensions.get('window').width,
+		flex: 1,
+		backgroundColor: theme.colors.gray,
 	},
 });
+
+export default Main;

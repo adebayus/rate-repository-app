@@ -65,6 +65,7 @@ const RepositoryList = () => {
 					forks: item.forksCount,
 					reviews: item.reviewCount,
 					ratings: item.ratingAverage,
+					avatar: item.ownerAvatarUrl,
 				};
 				return <RepositoryItem data={arrayItem} />;
 			}}
@@ -77,6 +78,5 @@ export default RepositoryList;
 const styles = StyleSheet.create({
 	separator: {
 		height: 10,
-		backgroundColor: 'red',
 	},
 });
